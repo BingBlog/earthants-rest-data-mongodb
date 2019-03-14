@@ -2,6 +2,7 @@ package app.user;
 
 import lombok.Data;
 import org.bson.types.ObjectId;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotNull;
@@ -33,5 +34,8 @@ public class User {
 
     @NotNull
     private String updatedTime;
+
+    @NotNull
+    private String email;
 
 }
