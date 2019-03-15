@@ -1,16 +1,16 @@
 package app.user;
 
 import lombok.Data;
-import org.bson.types.ObjectId;
-import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
+@Document(collection = "user")
 public class User {
-    @Id private ObjectId _id;
+    @Id private String _id;
 
     @NotNull
     @Size(min=2, max=30)

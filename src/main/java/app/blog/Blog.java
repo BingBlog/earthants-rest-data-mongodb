@@ -1,19 +1,25 @@
 package app.blog;
 
+import app.user.User;
 import lombok.Data;
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
+@Document(collection = "blog")
 public class Blog {
 
-    @Id private ObjectId id;
+    @Id private String _id;
 
-    @NotNull
+    @TextIndexed
     @Size(min=2, max=100)
+    @NotNull
     private String title;
 
     @Size(min=2, max=100)
@@ -29,6 +35,18 @@ public class Blog {
     private String updatedTime;
 
     @NotNull
-    private int userId;
+    private String createdBy;
 
+    @NotNull
+    private String updatedBy;
+
+    @Indexed
+    @NotNull
+    private String author;
+
+    @NotNull
+    private String content;
+
+    @DBRef
+    private User user;
 }
